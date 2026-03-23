@@ -8,19 +8,25 @@ class BlogController {
         this.view.bindAddPost(this.handleAddPost);
         this.view.bindDeletePost(this.handleDeletePost);
         this.view.bindAddComment(this.handleAddComment);
+
+        // СИНХРОНІЗАЦІЯ ПОСТІВ: слухаємо зміни в інших вкладках
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'devblog_posts') {
+                this.model.posts = JSON.parse(e.newValue) || [];
+                this.onPostsChanged(this.model.posts);
+            }
+        });
     }
 
     onPostsChanged = (posts) => {
         this.view.displayPosts(posts);
     };
 
-    // Оновлений метод додавання посту (зберігає аватарку автора)
     handleAddPost = (title, text) => {
         const user = this.authModel.currentUser;
         const authorName = user ? user.name : "Гість";
         const authorAvatar = user ? user.avatar : 'logo.jpg';
         
-        // Передаємо ім'я та аватарку в модель
         this.model.addPost(title, text, authorName, authorAvatar); 
         this.onPostsChanged(this.model.posts);
     };
@@ -30,7 +36,6 @@ class BlogController {
         this.onPostsChanged(this.model.posts);
     };
 
-    // Оновлений метод додавання коментаря (зберігає аватарку автора коментаря)
     handleAddComment = (id, text) => {
         const user = this.authModel.currentUser;
         const authorName = user ? user.name : "Гість";
@@ -59,7 +64,6 @@ class AuthController {
         }
     };
 
-    // Оновлений метод реєстрації (приймає аватарку)
     handleRegister = (name, email, password, gender, dob, avatarBase64) => {
         if (this.model.register(name, email, password, gender, dob, avatarBase64)) {
             this.view.showAlert("Успішна реєстрація!");
@@ -81,12 +85,17 @@ class ProfileController {
 document.addEventListener('DOMContentLoaded', () => {
     const authModel = new AuthModel();
     
-    // 1. ОНОВЛЮЄМО АВАТАРКУ В ХЕДЕРІ НА ВСІХ СТОРІНКАХ, ЯКЩО КОРИСТУВАЧ УВІЙШОВ
+    // СИНХРОНІЗАЦІЯ КОРИСТУВАЧА: якщо розлогінились або змінили юзера в іншій вкладці
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'devblog_currentUser') {
+            location.reload(); 
+        }
+    });
+
     if (typeof updateNavbarAvatar === 'function') {
         updateNavbarAvatar(authModel.currentUser);
     }
     
-    // Ініціалізація контролерів залежно від сторінки
     if (document.getElementById('posts-container')) {
         new BlogController(new BlogModel(), new BlogView(), authModel);
     }
