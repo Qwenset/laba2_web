@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог - Стрічка публікацій</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="logo.jpg" alt="Logo" class="navbar-logo mr-2">
+            <span>DevBlog</span>
+        </a>
+        <ul class="navbar-nav ml-auto flex-row">
+            <li class="nav-item px-2"><a class="nav-link" href="index.html">Головна</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="app.html">Блог</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="profile.html">Профіль</a></li>
+        </ul>
+    </div>
+    </header>
+
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4 shadow-sm border-0">
+                    <div class="card-body">
+                        <h4 class="card-title text-primary">Створити новий пост</h4>
+                        <form id="add-post-form">
+                            <div class="form-group">
+                                <input type="text" id="post-title" class="form-control" placeholder="Заголовок публікації" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="post-text" class="form-control" rows="3" placeholder="Текст публікації" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Опублікувати</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <h2 class="mb-3">Стрічка публікацій</h2>
+                <div id="posts-container"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Категорії</h5>
+                        <div class="d-flex flex-column align-items-start">
+                            <a href="category.html?tag=Frontend" class="mb-2">#Frontend</a>
+                            <a href="category.html?tag=Навчання" class="mb-2">#Навчання</a>
+                            <a href="category.html?tag=КПІ" class="mb-2">#КПІ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p>&copy; 2026 Лабораторна робота №1</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>

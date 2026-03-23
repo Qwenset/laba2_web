@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід та Реєстрація</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="navbar-logo mr-2">
+                <span>DevBlog</span>
+            </a>
+            <ul class="navbar-nav ml-auto flex-row">
+                <li class="nav-item px-2"><a class="nav-link" href="index.html">Головна</a></li>
+                <li class="nav-item px-2"><a class="nav-link" href="app.html">Блог</a></li>
+                <li class="nav-item px-2"><a class="nav-link" href="profile.html">Профіль</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container mt-5 flex-grow-1">
+        <ul class="nav nav-tabs" id="authTabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#login">Вхід</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#register">Реєстрація</a></li>
+        </ul>
+
+        <div class="tab-content mt-4 border p-4 bg-white shadow-sm">
+            <div class="tab-pane fade show active" id="login">
+                <h4>Вхід до системи</h4>
+                <form id="login-form">
+                    <div class="form-group"><label>Email</label><input type="email" id="login-email" class="form-control" required></div>
+                    <div class="form-group"><label>Пароль</label><input type="password" id="login-password" class="form-control" required></div>
+                    <button type="submit" class="btn btn-primary">Увійти</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="register">
+                <h4>Створити акаунт</h4>
+                <form id="register-form">
+                    <div class="form-group"><label>Ім’я</label><input type="text" id="reg-name" class="form-control" required></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="reg-email" class="form-control" required></div>
+                    <div class="form-group"><label>Пароль</label><input type="password" id="reg-password" class="form-control" required></div>
+                    <div class="form-group">
+                        <label>Стать</label>
+                        <select id="reg-gender" class="form-control">
+                            <option>Чоловіча</option>
+                            <option>Жіноча</option>
+                            <option>Інша</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Дата народження</label><input type="date" id="reg-dob" class="form-control" required></div>
+                    <div class="form-group">
+                        <label>Аватарка профілю</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="reg-avatar" accept="image/*">
+                            <label class="custom-file-label" for="reg-avatar" id="avatar-label">Оберіть файл...</label>
+                        </div>
+                        <small class="text-muted">Рекомендовано квадратне зображення.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">&copy; 2026 Лабораторна робота №1</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('#reg-avatar').on('change', function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>

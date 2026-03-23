@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Перегляд категорії</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">DevBlog</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="app.html">Назад до блогу</a></li>
+        </ul>
+    </header>
+
+    <main class="container mt-5">
+        <div class="card shadow-sm p-4">
+            <h2 id="category-title" class="text-primary border-bottom pb-2">Інформація про категорію</h2>
+            
+            <div id="content-frontend" class="category-info mt-3">
+                <h4>#Frontend</h4>
+                <p>Frontend — це розробка клієнтської частини користувацького інтерфейсу. Ми використовуємо HTML, CSS та JavaScript для створення того, що бачить користувач у браузері.</p>
+                <div class="alert alert-info">Популярні інструменти: React, Vue, Bootstrap, Tailwind CSS.</div>
+            </div>
+
+            <div id="content-education" class="category-info mt-3">
+                <h4>#Навчання</h4>
+                <p>Розділ присвячений навчальному процесу, корисним курсам, туторіалам та підготовці до іспитів у сфері IT.</p>
+            </div>
+
+            <div id="content-kpi" class="category-info mt-3">
+                <h4>#КПІ</h4>
+                <p>Новини та матеріали, що стосуються навчання в Ігоря Сікорського КПІ. Лабораторні роботи, проекти та студентське життя.</p>
+            </div>
+            
+            <a href="app.html" class="btn btn-outline-secondary mt-4">Повернутися до стрічки</a>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p>&copy; 2026 Ваш помічник</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tag = urlParams.get('tag');
+        
+        // Ховаємо всі блоки спочатку
+        document.querySelectorAll('.category-info').forEach(el => el.style.display = 'none');
+        
+        // Показуємо потрібний блок залежно від тегу в посиланні
+        if (tag === 'Frontend') document.getElementById('content-frontend').style.display = 'block';
+        else if (tag === 'Навчання') document.getElementById('content-education').style.display = 'block';
+        else if (tag === 'КПІ') document.getElementById('content-kpi').style.display = 'block';
+    </script>
+</body>
+</html>

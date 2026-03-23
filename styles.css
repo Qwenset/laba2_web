@@ -1,0 +1,50 @@
+/* Базові налаштування з твого прикладу */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f7f6;
+}
+
+main {
+    flex: 1;
+}
+
+/* Стилізація карток посту */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+/* Кнопки в стилі твого проекту */
+.btn-primary {
+    background-color: #343a40;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+.btn-primary:hover {
+    background-color: #f44343; /* Твій колір ховера */
+}
+
+.media-body {
+    font-size: 0.9rem;
+}
+/* Стиль для логотипу в шапці */
+.navbar-logo {
+    height: 40px; /* Висота іконки */
+    width: auto;  /* Пропорційна ширина */
+    border-radius: 50%; /* Робимо її круглою, якщо хочеш стиль аватарки */
+    border: 2px solid #f44343; /* Твій фірмовий колір для рамки */
+    background-color: white;
+}
+
+/* Додатковий відступ для тексту назви */
+.navbar-brand span {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
